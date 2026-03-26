@@ -5,16 +5,16 @@ export const getTelcellCheckout = webMethod(
     Permissions.Anyone,
     async (accessToken, order, wixTransactionId) => {
         
-        const price_total = order.description.totalAmount/100;
-        
-        const paymentLink = Main_Domain+
-            '?action=pay'+
-            '&license='+accessToken+
-            '&wixTransactionId='+wixTransactionId+
-            '&price='+price_total+
-            '&return_data=true'+
-            '&back_url='+encodeURIComponent(order.returnUrls.successUrl)+
-            '&fail_url='+encodeURIComponent(order.returnUrls.errorUrl);
+        const price_total = order.description.totalAmount / 100;
+
+        const paymentLink = Main_Domain +
+            '?action=pay' +
+            '&license=' + encodeURIComponent(accessToken) +
+            '&wixTransactionId=' + encodeURIComponent(wixTransactionId) +
+            '&price=' + encodeURIComponent(price_total) +
+            '&return_data=true' +
+            '&back_url=' + encodeURIComponent(order.returnUrls.successUrl) +
+            '&fail_url=' + encodeURIComponent(order.returnUrls.errorUrl);
         
         return paymentLink;
         
